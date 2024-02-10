@@ -1,6 +1,6 @@
 {
 	"name": "hyop",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"description": "Hypertext Operation. Tiny library (starting at 61 B) to hydrate operations as the hyop attribute. Use standalone or with other Hypertext libraries like HTMX...Hydration as Hypertext",
 	"keywords": [
 		"ctx-core",
