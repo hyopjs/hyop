@@ -1,0 +1,120 @@
+{
+	"name": "hyop",
+	"version": "0.1.0",
+	"description": "Hypertext Operation. Tiny library (starting at 61 B) to hydrate operations as the hyop attribute. Use standalone or with other Hypertext libraries like HTMX...Hydration as Hypertext",
+	"keywords": [
+		"ctx-core",
+		"http"
+	],
+	"homepage": "https://github.com/hyopjs/hyop#readme",
+	"bugs": {
+		"url": "https://github.com/hyopjs/hyop/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/hyopjs/hyop.git"
+	},
+	"license": "Apache-2.0",
+	"author": "Brian Takita",
+	"type": "module",
+	"files": [
+		"*.d.ts",
+		"*.js",
+		"*.json"
+	],
+	"types": "./index.d.ts",
+	"exports": {
+		".": "./index.js",
+		"./multi_hyop": "./multi_hyop/index.js",
+		"./single_hyop": "./single_hyop/index.js",
+		"./verify_multi_hyop": "./verify_multi_hyop/index.js",
+		"./verify_single_hyop": "./verify_single_hyop/index.js",
+		"./package.json": "./package.json"
+	},
+	"scripts": {
+		"build": ":",
+		"clean": ":",
+		"exec": "$@",
+		"prepublishOnly": "pnpm clean && pnpm build && pnpm test",
+		"test": "pnpm run /^test:/",
+		"test:size": "size-limit",
+		"test:type": "check-dts",
+		"test:unit": "tsx node_modules/uvu/bin.js . '\\.test\\.(ts|js)$'",
+		"test:unit:coverage": "c8 pnpm test:unit"
+	},
+	"dependencies": {},
+	"devDependencies": {
+		"@size-limit/preset-small-lib": "^11.0.2",
+		"@types/jsdom": "^21.1.6",
+		"c8": "^9.1.0",
+		"check-dts": "^0.7.2",
+		"jsdom": "^24.0.0",
+		"size-limit": "^11.0.2",
+		"tsx": "^4.7.1",
+		"typescript": "next",
+		"uvu": "^0.5.6"
+	},
+	"publishConfig": {
+		"access": "public",
+		"cache": "~/.npm"
+	},
+	"sideEffects": false,
+	"size-limit": [
+		{
+			"name": "single_hyop .",
+			"import": {
+				".": "{ single_hyop }"
+			},
+			"limit": "61 B"
+		},
+		{
+			"name": "single_hyop ./single_hyop",
+			"import": {
+				"./single_hyop": "{ single_hyop }"
+			},
+			"limit": "61 B"
+		},
+		{
+			"name": "multi_hyop .",
+			"import": {
+				".": "{ multi_hyop }"
+			},
+			"limit": "81 B"
+		},
+		{
+			"name": "multi_hyop ./multi_hyop",
+			"import": {
+				"./multi_hyop": "{ multi_hyop }"
+			},
+			"limit": "81 B"
+		},
+		{
+			"name": "verify_single_hyop .",
+			"import": {
+				".": "{ verify_single_hyop }"
+			},
+			"limit": "146 B"
+		},
+		{
+			"name": "verify_single_hyop ./verify_single_hyop",
+			"import": {
+				"./verify_single_hyop": "{ verify_single_hyop }"
+			},
+			"limit": "146 B"
+		},
+		{
+			"name": "verify_multi_hyop .",
+			"import": {
+				".": "{ verify_multi_hyop }"
+			},
+			"limit": "160 B"
+		},
+		{
+			"name": "verify_multi_hyop ./verify_multi_hyop",
+			"import": {
+				"./verify_multi_hyop": "{ verify_multi_hyop }"
+			},
+			"limit": "160 B"
+		}
+	]
+}
