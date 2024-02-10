@@ -1,5 +1,11 @@
 # hyop
 
+## 0.1.2
+
+### Patch Changes
+
+- update keywords
+
 ## 0.1.1
 
 ### Patch Changes
