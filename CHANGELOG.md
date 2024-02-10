@@ -1,5 +1,11 @@
 # hyop
 
+## 0.1.3
+
+### Patch Changes
+
+- keywords: + htmx,datastar,intercooler,jquery
+
 ## 0.1.2
 
 ### Patch Changes

@@ -1,12 +1,16 @@
 {
 	"name": "hyop",
-	"version": "0.1.2",
+	"version": "0.1.3",
 	"description": "Hypertext Operation. Tiny library (starting at 61 B) to hydrate operations as the hyop attribute. Use standalone or with other Hypertext libraries like HTMX...Hydration as Hypertext",
 	"keywords": [
 		"hypertext",
 		"hydration",
 		"tiny",
-		"minimal bloat"
+		"minimal bloat",
+		"htmx",
+		"datastar",
+		"intercooler",
+		"jquery"
 	],
 	"homepage": "https://github.com/hyopjs/hyop#readme",
 	"bugs": {
