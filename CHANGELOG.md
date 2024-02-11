@@ -1,5 +1,11 @@
 # hyop
 
+## 0.2.1
+
+### Patch Changes
+
+- README: code example: formatting
+
 ## 0.2.0
 
 ### Minor Changes
