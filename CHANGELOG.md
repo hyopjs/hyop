@@ -1,5 +1,16 @@
 # hyop
 
+## 0.2.3
+
+### Patch Changes
+
+- package.json: files: fix: include export module directories:
+
+      + multi_hyop
+      + single_hyop
+      + verify_multi_hyop
+      + verify_single_hyop
+
 ## 0.2.2
 
 ### Patch Changes

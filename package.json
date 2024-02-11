@@ -1,6 +1,6 @@
 {
 	"name": "hyop",
-	"version": "0.2.2",
+	"version": "0.2.3",
 	"description": "Hypertext Operation. Tiny library (starting at 61 B) to hydrate operations as the hyop attribute. Use standalone or with other Hypertext libraries like HTMX...Hydration as Hypertext",
 	"keywords": [
 		"hypertext",
@@ -26,7 +26,11 @@
 	"files": [
 		"*.d.ts",
 		"*.js",
-		"*.json"
+		"*.json",
+		"multi_hyop",
+		"single_hyop",
+		"verify_multi_hyop",
+		"verify_single_hyop"
 	],
 	"types": "./index.d.ts",
 	"exports": {
