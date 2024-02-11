@@ -58,7 +58,7 @@ window.addEventListener('load', ()=>{
 <html>
   <head>
     <script type="module">
-      import { single_hyop } from 'https://esm.run/hyop/single_hyop'
+      import { single_hyop } from 'https://esm.run/hyop'
       window.addEventListener('load', ()=>{
         single_hyop(document, {
           input__hyop: input=>{
