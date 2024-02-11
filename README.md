@@ -89,6 +89,35 @@ Multiple hyops can be used in a single tag by using `multi_hyop` instead of `sin
 
 In a build environment, you can also use `@ctx-core/preprocess` with the `DEBUG` configuration to make `single_hyop` run `verify_single_hyop` & `multi_hyop` run `verify_multi_hyop`.
 
+## DEBUG mode as an esbuild plugin
+
+If you don't want to switch between `single_hyop` or `multi_hyop` in production & `verify_single_hyop` or `verify_multi_hyop` in development, you can use the `@ctx-core/preprocess` or `preprocess` library.
+
+```ts
+import { preprocess } from '@ctx-core/preprocess'
+import { import_meta_env_ } from 'ctx-core/env'
+import { type Plugin } from 'esbuild'
+import { readFile } from 'node:fs/promises'
+function hyop_plugin_():Plugin {
+	return {
+		name: 'hyop',
+		setup(build) {
+			if (import_meta_env_().NODE_ENV !== 'production') {
+				build.onLoad({ filter: /hyop\/?.*$/ }, async ({ path })=>{
+					const source = await readFile(path).then(buf=>'' + buf)
+					return {
+						contents: preprocess(
+							source,
+							{ DEBUG: '1' },
+							{ type: 'js' })
+					}
+				})
+			}
+		}
+	}
+}
+```
+
 ## Name Convention
 
 I use the [tag vector name system](https://briantakita.me/posts/tag-vector-0-introduction), a variant of snake_case, for my development. Understanding that the majority of javascript developers use camelCase, I aliased all functions & types as camelCase.
