@@ -13,7 +13,7 @@ import { verify_multi_hyop } from '../verify_multi_hyop/index.js'
 export function multi_hyop(doc, op_R_fn) {
 	// @formatter:off
 	/* @if DEBUG **
-	verify_hyops(doc, op_R_fn)
+	verify_multi_hyop(doc, op_R_fn)
 	/* @endif */
 	/* @if !DEBUG */
 	for (let el of doc.querySelectorAll('[hyop]')) {

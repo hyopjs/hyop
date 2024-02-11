@@ -1,5 +1,11 @@
 # hyop
 
+## 0.2.4
+
+### Patch Changes
+
+- multi_hyop: DEBUG=1: fix: implementation
+
 ## 0.2.3
 
 ### Patch Changes
