@@ -27,11 +27,8 @@ npm i hyop
 <html>
   <head></head>
   <body>
-    <div
-      id="content"></div>
-    <input
-      type="text"
-      hyop="input__hyop">
+    <div id="content"></div>
+    <input type="text" hyop="input__hyop">
   </body>
 </html>
 ```
@@ -45,11 +42,8 @@ import {
 window.addEventListener('load', ()=>{
   single_hyop(document, {
     input__hyop: input=>{
-      const content = document.querySelector(
-        '#content')
-      input.addEventListener(
-        'input',
-        evt=>content.innerText = evt.target.value ?? '')
+      const content = document.querySelector('#content')
+      input.addEventListener('input', evt=>content.innerText = evt.target.value ?? '')
     }
   })
 })
@@ -64,9 +58,7 @@ window.addEventListener('load', ()=>{
 <html>
   <head>
     <script>
-      import {
-        single_hyop
-      } from 'https://esm.run/hyop/single_hyop'
+      import { single_hyop } from 'https://esm.run/hyop/single_hyop'
       window.addEventListener('load', ()=>{
         single_hyop(document, {
           input__hyop: input=>{
@@ -78,11 +70,8 @@ window.addEventListener('load', ()=>{
     </script>
   </head>
   <body>
-    <div
-      id="content"></div>
-    <input
-      type="text"
-      hyop="input__hyop">
+    <div id="content"></div>
+    <input type="text" hyop="input__hyop">
   </body>
 </html>
 ```
