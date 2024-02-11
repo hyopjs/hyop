@@ -1,5 +1,11 @@
 # hyop
 
+## 0.1.4
+
+### Patch Changes
+
+- README: example code uses spaces instead of tabs
+
 ## 0.1.3
 
 ### Patch Changes

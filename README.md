@@ -21,70 +21,76 @@ npm i hyop
 
 ## Browser logic in a JS/TS build environment
 
+[//]: @formatter:off
 ```html
 <!DOCTYPE html>
 <html>
-	<head></head>
-	<body>
-		<div
-			id="content"></div>
-		<input
-			type="text"
-			hyop="input__hyop">
-	</body>
+  <head></head>
+  <body>
+    <div
+      id="content"></div>
+    <input
+      type="text"
+      hyop="input__hyop">
+  </body>
 </html>
 ```
+[//]: @formatter:on
 
+[//]: @formatter:off
 ```ts
 import {
-	single_hyop
+  single_hyop
 } from 'hyop/single_hyop'
 window.addEventListener(
-	'load',
-	()=>{
-		single_hyop(
-			document,
-			{
-				input__hyop: input=>{
-					const content = document.querySelector(
-						'#content')
-					input.addEventListener(
-						'input',
-						evt=>content.innerText = evt.target.value ?? '')
-				}
-			})
-	})
+  'load',
+  ()=>{
+    single_hyop(
+      document,
+      {
+        input__hyop: input=>{
+          const content = document.querySelector(
+            '#content')
+          input.addEventListener(
+            'input',
+            evt=>content.innerText = evt.target.value ?? '')
+        }
+      })
+  })
 ```
+[//]: @formatter:on
 
 ## Use as a Script Tag
 
+[//]: @formatter:off
 ```html
 <!DOCTYPE html>
 <html>
-	<head>
-		<script>
-			import {
-				single_hyop
-			} from 'https://esm.run/hyop/single_hyop'
-			window.addEventListener('load', ()=>{
-				single_hyop(document, {
-					input__hyop: input=>{
-						const content = document.querySelector('#content')
-						input.addEventListener('input', evt=>content.innerText = evt.target.value ?? '')
-					}
-				})
-			})
-		</script>
-	</head>
-	<body>
-		<div
-			id="content"></div>
-		<input
-			type="text"
-			hyop="input__hyop">
-	</body>
+  <head>
+    <script>
+      import {
+        single_hyop
+      } from 'https://esm.run/hyop/single_hyop'
+      window.addEventListener('load', ()=>{
+        single_hyop(document, {
+          input__hyop: input=>{
+            const content = document.querySelector('#content')
+            input.addEventListener('input', evt=>content.innerText = evt.target.value ?? '')
+          }
+        })
+      })
+    </script>
+  </head>
+  <body>
+    <div
+      id="content"></div>
+    <input
+      type="text"
+      hyop="input__hyop">
+  </body>
 </html>
 ```
+[//]: @formatter:on
 
 ## multi_hyop
 
