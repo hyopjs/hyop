@@ -1,6 +1,6 @@
 {
 	"name": "hyop",
-	"version": "0.1.4",
+	"version": "0.2.0",
 	"description": "Hypertext Operation. Tiny library (starting at 61 B) to hydrate operations as the hyop attribute. Use standalone or with other Hypertext libraries like HTMX...Hydration as Hypertext",
 	"keywords": [
 		"hypertext",
@@ -74,6 +74,13 @@
 			"limit": "61 B"
 		},
 		{
+			"name": "singleHyop .",
+			"import": {
+				".": "{ singleHyop }"
+			},
+			"limit": "61 B"
+		},
+		{
 			"name": "single_hyop ./single_hyop",
 			"import": {
 				"./single_hyop": "{ single_hyop }"
@@ -84,6 +91,13 @@
 			"name": "multi_hyop .",
 			"import": {
 				".": "{ multi_hyop }"
+			},
+			"limit": "81 B"
+		},
+		{
+			"name": "multiHyop .",
+			"import": {
+				".": "{ multiHyop }"
 			},
 			"limit": "81 B"
 		},
@@ -102,6 +116,13 @@
 			"limit": "146 B"
 		},
 		{
+			"name": "verifySingleHyop .",
+			"import": {
+				".": "{ verifySingleHyop }"
+			},
+			"limit": "146 B"
+		},
+		{
 			"name": "verify_single_hyop ./verify_single_hyop",
 			"import": {
 				"./verify_single_hyop": "{ verify_single_hyop }"
@@ -112,6 +133,13 @@
 			"name": "verify_multi_hyop .",
 			"import": {
 				".": "{ verify_multi_hyop }"
+			},
+			"limit": "160 B"
+		},
+		{
+			"name": "verifyMultiHyop .",
+			"import": {
+				".": "{ verifyMultiHyop }"
 			},
 			"limit": "160 B"
 		},

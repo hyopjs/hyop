@@ -25,3 +25,4 @@ export function multi_hyop(doc, op_R_fn) {
 	/* @endif */
 	// @formatter:on
 }
+export { multi_hyop as multiHyop }

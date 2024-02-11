@@ -22,3 +22,4 @@ export function single_hyop(doc, op_R_fn) {
 	/* @endif */
 	// @formatter:on
 }
+export { single_hyop as singleHyop }

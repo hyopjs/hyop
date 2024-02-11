@@ -1,5 +1,17 @@
 # hyop
 
+## 0.2.0
+
+### Minor Changes
+
+- minor: camelCase aliases:
+
+      single_hyop: singleHyop
+      multi_hyop: multiHyop
+      verify_single_hyop: verifySingleHyop
+      verify_multi_hyop: verifyMultiHyop
+      hyop_fn_T: HyopFn
+
 ## 0.1.4
 
 ### Patch Changes

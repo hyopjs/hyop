@@ -103,3 +103,15 @@ Multiple hyops can be used in a single tag by using `multi_hyop` instead of `sin
 `verify_single_hyop` & `verify_multi_hyop` can be used to throw a friendly error message for missing hyops & for unused hyops. This facilitates debugging & removing dead code bloat.
 
 In a build environment, you can also use `@ctx-core/preprocess` with the `DEBUG` configuration to make `single_hyop` run `verify_single_hyop` & `multi_hyop` run `verify_multi_hyop`.
+
+## Name Convention
+
+I use the [tag vector name system](https://briantakita.me/posts/tag-vector-0-introduction), a variant of snake_case, for my development. Understanding that the majority of javascript developers use camelCase, I aliased all functions & types as camelCase.
+
+| tag_vector_name    | camelCaseName    | camelCaseImport                         |
+|--------------------|------------------|-----------------------------------------|
+| single_hyop        | singleHyop       | import { singleHyop } from 'hyop'       |
+| multi_hyop         | multiHyop        | import { multiHyop } from 'hyop'        |
+| verify_single_hyop | verifySingleHyop | import { verifySingleHyop } from 'hyop' |
+| verify_multi_hyop  | verifyMultiHyop  | import { verifyMultiHyop } from 'hyop'  |
+| hyop_fn_T          | HyopFn           | import { type HyopFn } from 'hyop'      |

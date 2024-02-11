@@ -20,3 +20,4 @@ export function verify_multi_hyop(doc, op_R_fn) {
 	}
 	if (op_S.size) throw Error('unused hyop: ' + [...op_S.keys()])
 }
+export { verify_multi_hyop as verifyMultiHyop }
