@@ -41,7 +41,9 @@ window.addEventListener('load', ()=>{
   single_hyop(document, {
     input__hyop: input=>{
       const content = document.querySelector('#content')
-      input.addEventListener('input', evt=>content.innerText = evt.target.value ?? '')
+      input.addEventListener(
+				'input',
+        evt=>content.innerText = evt.target.value ?? '')
     }
   })
 })
@@ -61,7 +63,9 @@ window.addEventListener('load', ()=>{
         single_hyop(document, {
           input__hyop: input=>{
             const content = document.querySelector('#content')
-            input.addEventListener('input', evt=>content.innerText = evt.target.value ?? '')
+            input.addEventListener(
+							'input',
+              evt=>content.innerText = evt.target.value ?? '')
           }
         })
       })
