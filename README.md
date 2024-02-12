@@ -91,42 +91,33 @@ In a build environment, you can also use `@ctx-core/preprocess` with the `DEBUG`
 
 If you don't want to switch between `single_hyop` or `multi_hyop` in production & `verify_single_hyop` or `verify_multi_hyop` in development, you can use the `@ctx-core/preprocess` or `preprocess` library.
 
+[//]: @formatter:off
 ```ts
-import {
-	preprocess
-} from '@ctx-core/preprocess'
-import {
-	import_meta_env_
-} from 'ctx-core/env'
-import {
-	type Plugin
-} from 'esbuild'
-import {
-	readFile
-} from 'node:fs/promises'
+import { preprocess } from '@ctx-core/preprocess'
+import { import_meta_env_ } from 'ctx-core/env'
+import { type Plugin } from 'esbuild'
+import { readFile } from 'node:fs/promises'
 function hyop_plugin_():Plugin {
-	return {
-		name: 'hyop',
-		setup(build) {
-			if (import_meta_env_().NODE_ENV !== 'production') {
-				build.onLoad(
-					{ filter: /hyop\/?.*$/ },
-					async ({ path })=>{
-						const source = await readFile(
-							path).then(
-							buf=>'' + buf)
-						return {
-							contents: preprocess(
-								source,
-								{ DEBUG: '1' },
-								{ type: 'js' })
-						}
-					})
-			}
-		}
-	}
+  return {
+    name: 'hyop',
+    setup(build) {
+      if (import_meta_env_().NODE_ENV !== 'production') {
+        build.onLoad({ filter: /hyop\/?.*$/ }, async ({ path })=>{
+          const source = await readFile(path).then(buf=>'' + buf)
+          return {
+            contents: preprocess(
+              source,
+              { DEBUG: '1' },
+              { type: 'js' })
+          }
+        })
+      }
+    }
+  }
 }
 ```
+
+[//]: @formatter:on
 
 ## Name Convention
 
