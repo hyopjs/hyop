@@ -6,12 +6,12 @@ This library can be used in a build environment or imported as an ESM in a `<scr
 
 Custom hyop functions can be used to hydrate server rendered html & isomorphic components. General purpose hyop functions can be released as npm packages. General purpose hyops will support a foundation for minimal-bloat tree-shakable Hypermedia libraries.
 
-| use case           | size  | imports                                   |
-|--------------------|:-----:|-------------------------------------------|
-| single_hyop        | 61 B  | import { single_hyop } from 'hyop'        |
-| multi_hyop         | 81 B  | import { multi_hyop } from 'hyop'         |
-| verify_single_hyop | 146 B | import { verify_single_hyop } from 'hyop' |
-| verify_multi_hyop  | 160 B | import { verify_multi_hyop } from 'hyop'  |
+| use case           | size  | imports                                     |
+|--------------------|:-----:|---------------------------------------------|
+| single_hyop        | 61 B  | `import { single_hyop } from 'hyop'`        |
+| multi_hyop         | 81 B  | `import { multi_hyop } from 'hyop'`         |
+| verify_single_hyop | 146 B | `import { verify_single_hyop } from 'hyop'` |
+| verify_multi_hyop  | 160 B | `import { verify_multi_hyop } from 'hyop'`  |
 
 ## Install using NPM
 
@@ -92,24 +92,36 @@ In a build environment, you can also use `@ctx-core/preprocess` with the `DEBUG`
 If you don't want to switch between `single_hyop` or `multi_hyop` in production & `verify_single_hyop` or `verify_multi_hyop` in development, you can use the `@ctx-core/preprocess` or `preprocess` library.
 
 ```ts
-import { preprocess } from '@ctx-core/preprocess'
-import { import_meta_env_ } from 'ctx-core/env'
-import { type Plugin } from 'esbuild'
-import { readFile } from 'node:fs/promises'
+import {
+	preprocess
+} from '@ctx-core/preprocess'
+import {
+	import_meta_env_
+} from 'ctx-core/env'
+import {
+	type Plugin
+} from 'esbuild'
+import {
+	readFile
+} from 'node:fs/promises'
 function hyop_plugin_():Plugin {
 	return {
 		name: 'hyop',
 		setup(build) {
 			if (import_meta_env_().NODE_ENV !== 'production') {
-				build.onLoad({ filter: /hyop\/?.*$/ }, async ({ path })=>{
-					const source = await readFile(path).then(buf=>'' + buf)
-					return {
-						contents: preprocess(
-							source,
-							{ DEBUG: '1' },
-							{ type: 'js' })
-					}
-				})
+				build.onLoad(
+					{ filter: /hyop\/?.*$/ },
+					async ({ path })=>{
+						const source = await readFile(
+							path).then(
+							buf=>'' + buf)
+						return {
+							contents: preprocess(
+								source,
+								{ DEBUG: '1' },
+								{ type: 'js' })
+						}
+					})
 			}
 		}
 	}
