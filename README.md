@@ -36,9 +36,7 @@ npm i hyop
 
 [//]: @formatter:off
 ```ts
-import {
-  single_hyop
-} from 'hyop/single_hyop'
+import { single_hyop } from 'hyop/single_hyop'
 window.addEventListener('load', ()=>{
   single_hyop(document, {
     input__hyop: input=>{
