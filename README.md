@@ -123,14 +123,38 @@ function hyop_plugin_():Plugin {
 
 [//]: @formatter:on
 
+## What about Locality of Behavior?
+
+Carson Gross, creator of [HTMX](https://github.com/bigskysoftware/htmx), points out that [Locality of Behavior (LoB)](https://htmx.org/essays/locality-of-behaviour/) influences a more maintainable codebase. LoB should be considered as a valid trade-off with [Separation of Concerns](https://en.wikipedia.org/wiki/Separation_of_concerns) & [Don't Repeat Yourself](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself).
+
+Hyop does have 1 level of indirection compared to a powerful (& larger) Hypertext library such as HTMX. What is the impact & can we mitigate the loss of LoB?
+
+It turns out that the LoB can be mitigated while keeping Separation of Concerns. If you use an editor that supports multiple panes, you can load the hyop function in one pane beside the server render logic. In addition, JSDOC provides `@see`, which can be used to link the hyop attribute to the hyop function.
+
+In this [relementjs](https://github.com/relementjs/relementjs) example:
+
+[//]: @formatter:off
+```ts
+import { div_ } from 'relementjs/html'
+export function my_content_() {
+  return (
+    div_({
+      /** @see {import('my-browser-code/my_content').my_content__hyop} */
+      hyop: 'my_content__hyop'
+    })
+  )
+}
+```
+
+```ts
+export function my_content__hyop(my_content:HTMLDivElement) {
+  // Do some DOM manipulation on my_content
+}
+```
+[//]: @formatter:on
+
+Modern code editors will allow the programmer to jump to the `my_content__hyop` link. `my_content__hyop` can then be moved into another pane with a keyboard shortcut. Yes, there is an extra step with a hotkey dance, but most developers can do this in < 1s...< 200ms if the hotkey is in muscle memory.
+
 ## Name Convention
 
 I use the [tag vector name system](https://briantakita.me/posts/tag-vector-0-introduction), a variant of snake_case, for my development. Understanding that the majority of javascript developers use camelCase, I aliased all functions & types as camelCase.
-
-| tag_vector_name    | camelCaseName    | camelCaseImport                         |
-|--------------------|------------------|-----------------------------------------|
-| single_hyop        | singleHyop       | import { singleHyop } from 'hyop'       |
-| multi_hyop         | multiHyop        | import { multiHyop } from 'hyop'        |
-| verify_single_hyop | verifySingleHyop | import { verifySingleHyop } from 'hyop' |
-| verify_multi_hyop  | verifyMultiHyop  | import { verifyMultiHyop } from 'hyop'  |
-| hyop_fn_T          | HyopFn           | import { type HyopFn } from 'hyop'      |
