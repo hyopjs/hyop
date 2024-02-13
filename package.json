@@ -1,10 +1,11 @@
 {
 	"name": "hyop",
-	"version": "0.2.4",
-	"description": "Hypertext Operation. Tiny library (starting at 61 B) to hydrate operations as the hyop attribute. Use standalone or with other Hypertext libraries like HTMX...Hydration as Hypertext",
+	"version": "0.2.5",
+	"description": "Hypermedia Operation. Tiny library (starting at 61 B) to hydrate operations as the hyop attribute. Use standalone or with other Hypermedia libraries like HTMX...Hydration as Hypermedia",
 	"keywords": [
-		"hypertext",
+		"hypermedia",
 		"hydration",
+		"hypertext",
 		"tiny",
 		"minimal bloat",
 		"htmx",

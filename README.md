@@ -1,6 +1,6 @@
 # hyop
 
-Hypertext Operation. Tiny library (starting at 61 B) to hydrate operations in the hyop attribute. Remove bloat from hydration & JS payloads. Use standalone or with other Hypertext libraries like HTMX...Hydration as Hypertext
+Hypermedia Operation. Tiny library (starting at 61 B) to hydrate operations in the hyop attribute. Remove bloat from hydration & JS payloads. Use standalone or with other Hypermedia libraries like HTMX...Hydration as Hypermedia
 
 This library can be used in a build environment or imported as an ESM in a `<script>` tag. For smaller JS payloads, use a build environment.
 
@@ -123,11 +123,23 @@ function hyop_plugin_():Plugin {
 
 [//]: @formatter:on
 
+## How does hyop compare with other Hypermedia libraries such as HTMX?
+
+Hyop supports the programmer to create hypermedia operations as javascript functions. It simply maps the hyop attribute with the hyop function. The programmer is responsible for defining & implementing the hyop...having full access to the [Web APIs](https://developer.mozilla.org/en-US/docs/Web/API). Small builds with minimal bloat are possible. Starting at `61 B` with `single_hyop`, you only need to bundle the code that you actually use.
+
+Other hypermedia libraries are impressive, but they ultimately have to support a full api. Some of these libraries have taken steps to support tree-shaking...but there is a minimal core to support the hypermedia api. These core libraries add > 1 kb of browser bundle. HTMX adds > 13 kb. These hypermedia apis support a subset of Javascript + the Web APIs.
+
+Hyop gives the programmer full access to Javascript & the Web APIs while providing an abstraction to bind server side rendered HTML with the hydrated hypermedia operation (hyop) at a much smaller size (~200x).
+
+## How does hyop fit into a reactive stack?
+
+Hyop can be used with reactive libraries such as [rmemo (reactive memo)](https://github.com/ctx-core/rmemo) & [relementjs (html builder)](https://github.com/relementjs/relementjs). rmemo by itself adds ~372-589 B<sup><a href="#note-on-app-payload-size-vs-standalone-library-payload-size">[1]</a></sup> to payload. hyop + relementjs + rmemo adds ~818 B<sup><a href="#note-on-app-payload-size-vs-standalone-library-payload-size">[1]</a></sup> to the payload.
+
 ## What about Locality of Behavior?
 
 Carson Gross, creator of [HTMX](https://github.com/bigskysoftware/htmx), points out that [Locality of Behavior (LoB)](https://htmx.org/essays/locality-of-behaviour/) influences a more maintainable codebase. LoB should be considered as a valid trade-off with [Separation of Concerns](https://en.wikipedia.org/wiki/Separation_of_concerns) & [Don't Repeat Yourself](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself).
 
-Hyop does have 1 level of indirection compared to a powerful (& larger) Hypertext library such as HTMX. What is the impact & can we mitigate the loss of LoB?
+Hyop does have 1 level of indirection compared to a powerful (& larger) Hypermedia library such as HTMX. What is the impact & can we mitigate the loss of LoB?
 
 It turns out that the LoB can be mitigated while keeping Separation of Concerns. If you use an editor that supports multiple panes, you can load the hyop function in one pane beside the server render logic. In addition, JSDOC provides `@see`, which can be used to link the hyop attribute to the hyop function.
 
@@ -158,3 +170,9 @@ Modern code editors will allow the programmer to jump to the `my_content__hyop` 
 ## Name Convention
 
 I use the [tag vector name system](https://briantakita.me/posts/tag-vector-0-introduction), a variant of snake_case, for my development. Understanding that the majority of javascript developers use camelCase, I aliased all functions & types as camelCase.
+
+## Note on App Payload Size vs Standalone Library Payload Size
+
+<p id="#app_payload">
+The standalone library minify + brotli payload size is measured only with the library's code. When built inside an app, brotli (or gzip) will use existing artifacts to further compress the library...meaning the library will add less to the app payload than it's standalone size.
+</p>
