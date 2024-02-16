@@ -42,7 +42,7 @@ window.addEventListener('load', ()=>{
     input__hyop: input=>{
       const content = document.querySelector('#content')
       input.addEventListener(
-				'input',
+        'input',
         evt=>content.innerText = evt.target.value ?? '')
     }
   })
@@ -64,7 +64,7 @@ window.addEventListener('load', ()=>{
           input__hyop: input=>{
             const content = document.querySelector('#content')
             input.addEventListener(
-							'input',
+              'input',
               evt=>content.innerText = evt.target.value ?? '')
           }
         })
