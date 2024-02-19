@@ -1,5 +1,11 @@
 # hyop
 
+## 0.2.6
+
+### Patch Changes
+
+- esbuild: ^0.20.0 -> ^0.20.1
+
 ## 0.2.5
 
 ### Patch Changes
@@ -7,9 +13,10 @@
 - documentation: hypermedia instead of hypertext
 
   README:
-    + How does hyop fit into a reactive stack?
-    + How does hyop compare with other Hypermedia libraries such as HTMX?
-    + Note on App Payload Size vs Standalone Library Payload Size
+
+  - How does hyop fit into a reactive stack?
+  - How does hyop compare with other Hypermedia libraries such as HTMX?
+  - Note on App Payload Size vs Standalone Library Payload Size
 
   package.json: keywords: + hypermedia
 

@@ -1,6 +1,6 @@
 {
 	"name": "hyop",
-	"version": "0.2.5",
+	"version": "0.2.6",
 	"description": "Hypermedia Operation. Tiny library (starting at 61 B) to hydrate operations as the hyop attribute. Use standalone or with other Hypermedia libraries like HTMX...Hydration as Hypermedia",
 	"keywords": [
 		"hypermedia",
@@ -60,7 +60,7 @@
 		"@types/jsdom": "^21.1.6",
 		"c8": "^9.1.0",
 		"check-dts": "^0.7.2",
-		"esbuild": "^0.20.0",
+		"esbuild": "^0.20.1",
 		"jsdom": "^24.0.0",
 		"size-limit": "^11.0.2",
 		"tsx": "^4.7.1",
