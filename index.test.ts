@@ -1,5 +1,5 @@
 import { preprocess } from '@ctx-core/preprocess'
-import { tempfile_path_ } from 'ctx-core/all'
+import { tempfile_path_ } from 'ctx-core/tempfile'
 import { build } from 'esbuild'
 import { JSDOM } from 'jsdom'
 import { readFile, unlink } from 'node:fs/promises'
@@ -7,8 +7,8 @@ import { tmpdir } from 'node:os'
 import { dirname, join } from 'node:path'
 import { test } from 'uvu'
 import { equal, throws } from 'uvu/assert'
-import { multi_hyop, single_hyop, verify_multi_hyop, verify_single_hyop } from './index.js'
-test('single_hyop', ()=>{
+import { multi_hyop, hyop, verify_multi_hyop, verify_hyop } from './index.js'
+test('hyop', ()=>{
 	const jsdom = new JSDOM()
 	const document = jsdom.window.document
 	const el_a:[string, Element][] = []
@@ -20,15 +20,15 @@ test('single_hyop', ()=>{
 	div1.setAttribute('hyop', 'fn1')
 	document.body.appendChild(div0)
 	document.body.appendChild(div1)
-	single_hyop(document, { fn0, fn1 })
+	hyop(document, { fn0, fn1 })
 	equal(el_a, [['fn0', div0], ['fn1', div1]])
 })
-test('single_hyop|DEBUG=1', async ()=>{
+test('hyop|DEBUG=1', async ()=>{
 	const dir = dirname(new URL(import.meta.url).pathname)
 	const tempfile = await tempfile_path_(tmpdir(), 'js')
 	try {
 		await build({
-			entryPoints: [join(dir, 'single_hyop/index.js')],
+			entryPoints: [join(dir, 'hyop/index.js')],
 			outfile: tempfile,
 			format: 'esm',
 			bundle: true,
@@ -59,10 +59,10 @@ test('single_hyop|DEBUG=1', async ()=>{
 		div1.setAttribute('hyop', 'fn1')
 		document.body.appendChild(div0)
 		document.body.appendChild(div1)
-		const { single_hyop } = await import(tempfile)
-		single_hyop(document, { fn0, fn1 })
+		const { hyop } = await import(tempfile)
+		hyop(document, { fn0, fn1 })
 		equal(el_a, [['fn0', div0], ['fn1', div1]])
-		throws(()=>single_hyop(document, {
+		throws(()=>hyop(document, {
 			'no-div': ()=>0
 		}), 'missing hyop: no-fn')
 		equal(el_a, [['fn0', div0], ['fn1', div1]])
@@ -70,7 +70,7 @@ test('single_hyop|DEBUG=1', async ()=>{
 		await unlink(tempfile)
 	}
 })
-test('verify_single_hyop', ()=>{
+test('verify_hyop', ()=>{
 	const jsdom = new JSDOM()
 	const document = jsdom.window.document
 	const el_a:[string, Element][] = []
@@ -82,10 +82,10 @@ test('verify_single_hyop', ()=>{
 	div1.setAttribute('hyop', 'fn1')
 	document.body.appendChild(div0)
 	document.body.appendChild(div1)
-	verify_single_hyop(document, { fn0, fn1 })
+	verify_hyop(document, { fn0, fn1 })
 	equal(el_a, [['fn0', div0], ['fn1', div1]])
 })
-test('single_hyop|error', ()=>{
+test('hyop|error', ()=>{
 	const jsdom = new JSDOM()
 	const document = jsdom.window.document
 	const el_a:[string, Element][] = []
@@ -96,9 +96,9 @@ test('single_hyop|error', ()=>{
 	div1.setAttribute('hyop', 'fn1')
 	document.body.appendChild(div0)
 	document.body.appendChild(div1)
-	throws(()=>single_hyop(document, { fn1 }))
+	throws(()=>hyop(document, { fn1 }))
 })
-test('verify_single_hyop|error', ()=>{
+test('verify_hyop|error', ()=>{
 	const jsdom = new JSDOM()
 	const document = jsdom.window.document
 	const el_a:[string, Element][] = []
@@ -109,10 +109,18 @@ test('verify_single_hyop|error', ()=>{
 	div1.setAttribute('hyop', 'fn1')
 	document.body.appendChild(div0)
 	document.body.appendChild(div1)
-	throws(()=>verify_single_hyop(document, { fn1 }), 'missing hyop: no-fn')
-	throws(()=>verify_single_hyop(document, {
-		'no-fn': ()=>0, fn1, fn2: ()=>0
-	}), 'unused hyop: fn2')
+	throws(()=>verify_hyop(document, { fn1 }), 'missing hyop: no-fn')
+	const warn = console.warn
+	try {
+		const warn_arg_aa:string[][] = []
+		console.warn = (...arg_a)=>warn_arg_aa.push(arg_a)
+		verify_hyop(document, {
+			'no-fn': ()=>0, fn1, fn2: ()=>0
+		})
+		equal(warn_arg_aa, [['unused hyop: fn2']])
+	} finally {
+		console.warn = warn
+	}
 })
 test('multi_hyop', ()=>{
 	const jsdom = new JSDOM()
@@ -201,8 +209,16 @@ test('verify_multi_hyop|error', ()=>{
 	div0.setAttribute('hyop', 'no-fn fn1')
 	document.body.appendChild(div0)
 	throws(()=>verify_multi_hyop(document, { fn1 }), 'missing hyop: no-fn')
-	throws(()=>verify_multi_hyop(document, {
-		'no-fn': ()=>0, fn1, fn2: ()=>0
-	}), 'unused hyop: fn2')
+	const warn = console.warn
+	try {
+		const warn_arg_aa:string[][] = []
+		console.warn = (...arg_a)=>warn_arg_aa.push(arg_a)
+		verify_multi_hyop(document, {
+			'no-fn': ()=>0, fn1, fn2: ()=>0
+		})
+		equal(warn_arg_aa, [['unused hyop: fn2']])
+	} finally {
+		console.warn = warn
+	}
 })
 test.run()

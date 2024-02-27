@@ -4,7 +4,7 @@
  * @param {Element}doc
  * @param {Record<string, (el:Node)=>unknown}op_R_fn
  */
-export function verify_single_hyop(doc, op_R_fn) {
+export function verify_hyop(doc, op_R_fn) {
 	let op_S = new Set
 	for (let key in op_R_fn) {
 		op_S.add(key)
@@ -15,6 +15,10 @@ export function verify_single_hyop(doc, op_R_fn) {
 		op_R_fn[doc](el)
 		op_S.delete(doc)
 	}
-	if (op_S.size) throw Error('unused hyop: ' + [...op_S.keys()])
+	if (op_S.size) console.warn('unused hyop: ' + [...op_S.keys()])
 }
-export { verify_single_hyop as verifySingleHyop }
+export {
+	verify_hyop as verifyHyop,
+	verify_hyop as verify_single_hyop,
+	verify_hyop as verifySingleHyop,
+}

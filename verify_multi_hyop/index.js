@@ -18,6 +18,6 @@ export function verify_multi_hyop(doc, op_R_fn) {
 			op_S.delete(op)
 		}
 	}
-	if (op_S.size) throw Error('unused hyop: ' + [...op_S.keys()])
+	if (op_S.size) console.warn('unused hyop: ' + [...op_S.keys()])
 }
 export { verify_multi_hyop as verifyMultiHyop }
