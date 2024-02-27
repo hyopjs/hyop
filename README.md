@@ -197,6 +197,42 @@ window.addEventListener('load', ()=>{
 })
 ```
 
+## Real World Examples
+
+Hyop can be used to assign behavior to complex browser side interactions from a MPA. I'll show a couple of examples pages with code from a recent project. Both examples are from the same project. The following tech is used in these examples:
+
+- [rmemo](https://github.com/ctx-core/rmemo)
+- [relementjs](https://github.com/relementjs/relementjs)
+- [ctx-core/be](https://github.com/ctx-core/be)
+- [YT Player](https://developers.google.com/youtube/iframe_api_reference)
+- [Web Animations](https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API)
+
+In addition, the site is built using:
+
+- [rappstack](https://github.com/rappstack)
+- [drizzle orm](https://github.com/drizzle-team/drizzle-orm/)
+- [relysjs](https://github.com/relysjs/relysjs) which extends [rebuildjs](https://github.com/rebuildjs/rebuildjs)
+
+Point being, hyop can fit in a custom stack or within a more established framework stack.
+
+### YouTube Video Player, minor web animations
+
+https://brookebrodack.net/content
+
+This page shows videos from Brooke Brodack's YouTube channel. The YouTube video player is embbedded with the video being in sync with the feed link.
+
+- [server render logic](https://github.com/btakita/ui--server--brookebrodack/blob/main/content/content__doc_html.ts)
+- [browser logic](https://github.com/btakita/ui--browser--brookebrodack/blob/main/content/content__hyop.ts)
+
+### Timeline with Animations, YouTube Video Player + Internet Archive Video Player
+
+https://brookebrodack.net/brookers
+
+This page is a partial timeline of the deleted Brookers YouTube channel. It integrates some web animations, YouTube player, & the Internet Archive video player.
+
+- [server render logic](https://github.com/btakita/ui--server--brookebrodack/blob/main/brookers/brookers__doc_html.ts)
+- [browser logic](https://github.com/btakita/ui--browser--brookebrodack/blob/main/brookers/brookers__hyop.ts)
+
 ## Name Convention
 
 I use the [tag vector name system](https://briantakita.me/posts/tag-vector-0-introduction), a variant of snake_case, for my development. Understanding that the majority of javascript developers use camelCase, I aliased all functions & types as camelCase.
