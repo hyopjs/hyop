@@ -36,7 +36,7 @@ npm i hyop
 
 [//]: @formatter:off
 ```ts
-import { hyop } from 'hyop/hyop'
+import { hyop } from 'hyop'
 window.addEventListener('load', ()=>{
   hyop(document, {
     input__hyop: input=>{
@@ -188,7 +188,7 @@ If you have a module dedicated to hyop exports, you can use `import * as some_hy
 
 index.browser.ts
 ```ts
-import { hyop } from 'hyop/hyop'
+import { hyop } from 'hyop'
 import * as some_hyops from './some_hyops'
 window.addEventListener('load', ()=>{
   hyop(document, {
