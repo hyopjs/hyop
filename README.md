@@ -137,11 +137,11 @@ Hyop can be used with reactive libraries such as [rmemo (reactive memo)](https:/
 
 ## What about Locality of Behavior?
 
-Carson Gross, creator of [HTMX](https://github.com/bigskysoftware/htmx), points out that [Locality of Behavior (LoB)](https://htmx.org/essays/locality-of-behaviour/) influences a more maintainable codebase. LoB should be considered as a valid trade-off with [Separation of Concerns](https://en.wikipedia.org/wiki/Separation_of_concerns) & [Don't Repeat Yourself](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself).
+Carson Gross, creator of [HTMX](https://github.com/bigskysoftware/htmx), points out that [Locality of Behavior (LoB)](https://htmx.org/essays/locality-of-behaviour/) makes a codebase more maintainable. LoB is a valid trade-off with [Separation of Concerns](https://en.wikipedia.org/wiki/Separation_of_concerns) & [Don't Repeat Yourself](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself).
 
-Hyop does have 1 level of indirection compared to a powerful (& larger) Hypermedia library such as HTMX. What is the impact & can we mitigate the loss of LoB?
+Hyop has 1 level of indirection compared to a powerful (& larger) Hypermedia library such as HTMX. What is the impact & can we mitigate the loss of LoB?
 
-It turns out that the LoB can be mitigated while keeping Separation of Concerns. If you use an editor that supports multiple panes, you can load the hyop function in one pane beside the server render logic. In addition, JSDOC provides `@see`, which can be used to link the hyop attribute to the hyop function.
+It turns out that the LoB can be mitigated while keeping Separation of Concerns. If you use an editor that supports multiple panes, you can load the hyop function a separate pane beside the server render logic. In addition, JSDOC provides `@see`, which can be used to link the SSR hyop attribute to the hyop function.
 
 In this [relementjs](https://github.com/relementjs/relementjs) example:
 
@@ -166,6 +166,36 @@ export function my_content__hyop(my_content:HTMLDivElement) {
 [//]: @formatter:on
 
 Modern code editors will allow the programmer to jump to the `my_content__hyop` link. `my_content__hyop` can then be moved into another pane with a keyboard shortcut. Yes, there is an extra step with a hotkey dance, but most developers can do this in < 1s...< 200ms if the hotkey is in muscle memory.
+
+## Pro Tip
+
+Create a hyop for each element that is used in browser side javascript. A hyop can be used to assign an HTMLElement to a variable which can be used by another HTMLElement's hyop.
+
+[//]: @formatter:off
+```ts
+let text_content:HTMLElement
+export function text_content__hyop(_text_content:HTMLElement) {
+  text_content = _text_content
+}
+export function input__hyop(input:HTMLInputElement) {
+  input.addEventListener('input', evt=>
+    text_content.innerText = evt.target.value)
+}
+```
+[//]: @formatter:on
+
+If you have a module dedicated to hyop exports, you can use `import * as some_hyops` to assign the hyop exports to the hyop function.
+
+index.browser.ts
+```ts
+import { hyop } from 'hyop/hyop'
+import * as some_hyops from './some_hyops'
+window.addEventListener('load', ()=>{
+  hyop(document, {
+    ...some_hyops
+  })
+})
+```
 
 ## Name Convention
 
