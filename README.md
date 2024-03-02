@@ -2,9 +2,9 @@
 
 Hypermedia Operation or Hydration Operation. Tiny library (starting at 61 B) to hydrate operations in the hyop attribute. Remove bloat from hydration & JS payloads. Use standalone or with other Hypermedia libraries like HTMX...Hydration as Hypermedia.
 
-This library can be used in a build environment or imported as an ESM in a `<script>` tag. For smaller JS payloads, use a build environment.
+hyop supports usage in a build environment or in a `<script>` tag as an ESM. For smaller JS payloads, use a build environment.
 
-Custom hyop functions can be used to hydrate server rendered html & isomorphic components. General purpose hyop functions can be released as npm packages. General purpose hyops will support a foundation for minimal-bloat tree-shakable Hypermedia libraries.
+Custom hyop functions hydrate server rendered html & isomorphic components. Release general purpose hyop functions as npm packages. General purpose hyops support a foundation for minimal-bloat tree-shakable Hypermedia libraries.
 
 | use case          | size  | imports                                    |
 |-------------------|:-----:|--------------------------------------------|
@@ -81,19 +81,17 @@ window.addEventListener('load', ()=>{
 
 ## multi_hyop
 
-Multiple hyops can be used in a single tag by using `multi_hyop` instead of `hyop`. The standalone size is `81 B` instead of `61 B`. For the extra bytes, you gain the ability to compose hyops.
+Using `multi_hyop`  instead of `hyop` allows calling many hyops in a hyop attribute. The standalone size is `81 B` instead of `61 B`. For the extra bytes, you gain the ability to compose hyops.
 
 ## Development & Debugging
 
-`hyop` & `multi_hyop` are implemented to have a minimal payload size. If a hyop is missing, a non-friendly error will occur. If there are unused hyops loaded, then it will run with the dead code bloat.
+By themselves, `hyop` & `multi_hyop` have a minimal payload size impact. If a hyop is missing, a non-obvious error will occur. Unused hyops will be dead code bloat.
 
-`verify_hyop` & `verify_multi_hyop` can be used to throw a friendly error message for missing hyops & for unused hyops. This facilitates debugging & removing dead code bloat.
+`verify_hyop` & `verify_multi_hyop` throw a friendly error message for missing hyops. These functions warn about unused hyops. This facilitates debugging & removing dead code bloat.
 
-In a build environment, you can also use `@ctx-core/preprocess` with the `DEBUG` configuration to make `hyop` run `verify_hyop` & `multi_hyop` run `verify_multi_hyop`.
+When building the javascript payload. You can use `@ctx-core/preprocess` with the `DEBUG` env. This preprocesses `hyop` to run `verify_hyop` & `multi_hyop` run `verify_multi_hyop`. Useful for development enivornments.
 
-## DEBUG mode as an esbuild plugin
-
-If you don't want to switch between `hyop` or `multi_hyop` in production & `verify_hyop` or `verify_multi_hyop` in development, you can use the `@ctx-core/preprocess` or `preprocess` library.
+## @ctx-core/preprosess with DEBUG env as an esbuild plugin
 
 [//]: @formatter:off
 ```ts
@@ -112,7 +110,8 @@ function hyop_plugin_():Plugin {
             contents: preprocess(
               source,
               { DEBUG: '1' },
-              { type: 'js' })
+              { type: 'js' }),
+            loader: 'ts'
           }
         })
       }
@@ -125,23 +124,23 @@ function hyop_plugin_():Plugin {
 
 ## How does hyop compare with other Hypermedia libraries such as HTMX?
 
-Hyop supports the programmer to create hypermedia operations as javascript functions. It simply maps the hyop attribute with the hyop function. The programmer is responsible for defining & implementing the hyop...having full access to the [Web APIs](https://developer.mozilla.org/en-US/docs/Web/API). Small builds with minimal bloat are possible. Starting at `61 B` with `hyop`, you only need to bundle the code that you actually use.
+Hyop supports the programmer to create hypermedia operations as javascript functions. The hyop attribute maps to the hyop function. The programmer defines & implements the hyop. With full access to the [Web APIs](https://developer.mozilla.org/en-US/docs/Web/API). Small builds with minimal bloat are possible. Starting at `61 B` with `hyop`, you only need to bundle the code that you actually use.
 
-Other hypermedia libraries are impressive, but they ultimately have to support a full api. Some of these libraries have taken steps to support tree-shaking...but there is a minimal core to support the hypermedia api. These core libraries add > 1 kb of browser bundle. HTMX adds > 13 kb. These hypermedia apis support a subset of Javascript + the Web APIs.
+Other hypermedia libraries are impressive. Yet they have to support a full api. Some of these libraries have taken steps to support tree-shaking. Yet even with treeshaking, a minimal core has to support the hypermedia api. These core libraries add > 1 kb of browser bundle. HTMX adds > 13 kb. These hypermedia apis support a subset of Javascript + the Web APIs.
 
-Hyop gives the programmer full access to Javascript & the Web APIs while providing an abstraction to bind server side rendered HTML with the hydrated hypermedia operation (hyop) at a much smaller size (~200x).
+Hyop gives the programmer full access to Javascript & the Web APIs. And binds SSR HTML with the hydrated hypermedia operation (hyop) at a much smaller size (~200x).
 
 ## How does hyop fit into a reactive stack?
 
-Hyop can be used with reactive libraries such as [rmemo (reactive memo)](https://github.com/ctx-core/rmemo) & [relementjs (html builder)](https://github.com/relementjs/relementjs). rmemo by itself adds ~372 B to ~589 B<sup><a href="#note-on-app-payload-size-vs-standalone-library-payload-size">[1]</a></sup> to payload. hyop + relementjs + rmemo adds ~818 B<sup><a href="#note-on-app-payload-size-vs-standalone-library-payload-size">[1]</a></sup> to the payload.
+Hyop is useful with reactive libraries. Including [rmemo (reactive memo)](https://github.com/ctx-core/rmemo) & [relementjs (html builder)](https://github.com/relementjs/relementjs). rmemo by itself adds ~372 B to ~589 B<sup><a href="#note-on-app-payload-size-vs-standalone-library-payload-size">[1]</a></sup> to payload. hyop + relementjs + rmemo adds ~818 B<sup><a href="#note-on-app-payload-size-vs-standalone-library-payload-size">[1]</a></sup> to the payload.
 
 ## What about Locality of Behavior?
 
 Carson Gross, creator of [HTMX](https://github.com/bigskysoftware/htmx), points out that [Locality of Behavior (LoB)](https://htmx.org/essays/locality-of-behaviour/) makes a codebase more maintainable. LoB is a valid trade-off with [Separation of Concerns](https://en.wikipedia.org/wiki/Separation_of_concerns) & [Don't Repeat Yourself](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself).
 
-Hyop has 1 level of indirection compared to a powerful (& larger) Hypermedia library such as HTMX. What is the impact & can we mitigate the loss of LoB?
+Hyop has 1 level of indirection. To the hyop implementation function. Compared to embedding the hypermedia steps in HTMX. What is the impact & can we mitigate the loss of LoB?
 
-It turns out that the LoB can be mitigated while keeping Separation of Concerns. If you use an editor that supports multiple panes, you can load the hyop function a separate pane beside the server render logic. In addition, JSDOC provides `@see`, which can be used to link the SSR hyop attribute to the hyop function.
+It turns out that keeping LoB with Separation of Concerns is possible! A multi-pane editor can load the hyop function a separate pane beside the server render logic. JSDOC's `@see`, can link the SSR hyop attribute to the hyop browser function.
 
 In this [relementjs](https://github.com/relementjs/relementjs) example:
 
@@ -165,11 +164,11 @@ export function my_content__hyop(my_content:HTMLDivElement) {
 ```
 [//]: @formatter:on
 
-Modern code editors will allow the programmer to jump to the `my_content__hyop` link. `my_content__hyop` can then be moved into another pane with a keyboard shortcut. Yes, there is an extra step with a hotkey dance, but most developers can do this in < 1s...< 200ms if the hotkey is in muscle memory.
+Modern code editors will allow the programmer to jump to the `my_content__hyop` link. A keyboard shortcut moves `my_content__hyop` into another pane. There is an extra step with the hotkey. Yet most developers can do this in < 1s...< 200ms if the hotkey is in muscle memory.
 
 ## Pro Tip
 
-Create a hyop for each element that is used in browser side javascript. A hyop can be used to assign an HTMLElement to a variable which can be used by another HTMLElement's hyop.
+Create a hyop for each dynamic element in the browser. One hyop assigns an HTMLElement to a variable for another HTMLElement's hyop to use.
 
 [//]: @formatter:off
 ```ts
@@ -184,7 +183,7 @@ export function input__hyop(input:HTMLInputElement) {
 ```
 [//]: @formatter:on
 
-If you have a module dedicated to hyop exports, you can use `import * as some_hyops` to assign the hyop exports to the hyop function.
+A module dedicated to hyop exports allows `import * as some_hyops`. Allowing passing all the hyop exports to the hyop function.
 
 index.browser.ts
 ```ts
@@ -199,7 +198,7 @@ window.addEventListener('load', ()=>{
 
 ## Real World Examples
 
-Hyop can be used to assign behavior to complex browser side interactions from a MPA. I'll show a couple of examples pages with code from a recent project. Both examples are from the same project. The following tech is used in these examples:
+Hyop assigns behavior to complex browser side interactions from a MPA. I'll show a couple of examples pages with code from a recent project. Both examples are from the same project. These examples use following tech:
 
 - [rmemo](https://github.com/ctx-core/rmemo)
 - [relementjs](https://github.com/relementjs/relementjs)
@@ -207,7 +206,7 @@ Hyop can be used to assign behavior to complex browser side interactions from a 
 - [YT Player](https://developers.google.com/youtube/iframe_api_reference)
 - [Web Animations](https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API)
 
-In addition, the site is built using:
+The project uses the following tech for it's build:
 
 - [rappstack](https://github.com/rappstack)
 - [drizzle orm](https://github.com/drizzle-team/drizzle-orm/)
@@ -219,7 +218,7 @@ Point being, hyop can fit in a custom stack or within a more established framewo
 
 https://brookebrodack.net/content
 
-This page shows videos from Brooke Brodack's YouTube channel. The YouTube video player is embbedded with the video being in sync with the feed link.
+This page shows videos from Brooke Brodack's YouTube channel. The embebbed YouTube video player with the play/pause video state being in sync with the feed link.
 
 - [server render logic](https://github.com/btakita/ui--server--brookebrodack/blob/main/content/content__doc_html.ts)
 - [browser logic](https://github.com/btakita/ui--browser--brookebrodack/blob/main/content/content__hyop.ts)
@@ -235,10 +234,10 @@ This page is a partial timeline of the deleted Brookers YouTube channel. It inte
 
 ## Name Convention
 
-I use the [tag vector name system](https://briantakita.me/posts/tag-vector-0-introduction), a variant of snake_case, for my development. Understanding that the majority of javascript developers use camelCase, I aliased all functions & types as camelCase.
+I use the [tag vector name system](https://briantakita.me/posts/tag-vector-0-introduction), a variant of snake_case, for my development. The majority of javascript developers use camelCase. So I aliased all functions & types as camelCase.
 
 ## Note on App Payload Size vs Standalone Library Payload Size
 
 <p id="#app_payload">
-The standalone library minify + brotli payload size is measured only with the library's code. When built inside an app, brotli (or gzip) will use existing artifacts to further compress the library...meaning the library will add less to the app payload than it's standalone size.
+Measuring the standalone library minify + brotli payload size. Building this library inside an app causes brotli (or gzip) to use existing artifacts. Compressing the library even more. Meaning the library will add less to the app payload than it's standalone size.
 </p>
