@@ -1,5 +1,12 @@
 # hyop
 
+## 0.3.1
+
+### Patch Changes
+
+- size-limit: ^11.0.3 -> ^11.1.0
+- @size-limit/preset-small-lib: ^11.0.3 -> ^11.1.0
+
 ## 0.3.0
 
 ### Minor Changes
