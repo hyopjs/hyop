@@ -1,5 +1,11 @@
 # hyop
 
+## 0.3.2
+
+### Patch Changes
+
+- esbuild: ^0.20.1 -> ^0.20.2
+
 ## 0.3.1
 
 ### Patch Changes
