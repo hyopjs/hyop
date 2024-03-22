@@ -12,10 +12,10 @@ export function verify_multi_hyop(doc, op_R_fn) {
 	}
 	for (let el of doc.querySelectorAll('[hyop]')) {
 		doc = el.getAttribute('hyop')
-		for (let hyop of doc.split(/\s+/)) {
-			if (!op_R_fn[hyop]) throw Error('missing hyop', { hyop })
-			op_R_fn[hyop](el)
-			op_S.delete(hyop)
+		for (let op of doc.split(/\s+/)) {
+			if (!op_R_fn[op]) throw Error('missing hyop: ' + op)
+			op_R_fn[op](el)
+			op_S.delete(op)
 		}
 	}
 	if (op_S.size) console.warn('unused hyop: ' + [...op_S.keys()])

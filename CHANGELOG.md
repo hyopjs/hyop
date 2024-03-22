@@ -1,5 +1,11 @@
 # hyop
 
+## 0.3.5
+
+### Patch Changes
+
+- verify_hyop,verify_multi_hyop: missing hyop error: fix: hyop in error message
+
 ## 0.3.4
 
 ### Patch Changes
