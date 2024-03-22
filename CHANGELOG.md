@@ -1,5 +1,11 @@
 # hyop
 
+## 0.3.4
+
+### Patch Changes
+
+- verify_hyop,verify_multi_hyop: error message: object with hyop key
+
 ## 0.3.3
 
 ### Patch Changes

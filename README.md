@@ -10,8 +10,8 @@ Custom hyop functions hydrate server rendered html & isomorphic components. Rele
 |-------------------|:-----:|--------------------------------------------|
 | hyop              | 61 B  | `import { hyop } from 'hyop'`              |
 | multi_hyop        | 81 B  | `import { multi_hyop } from 'hyop'`        |
-| verify_hyop       | 148 B | `import { verify_hyop } from 'hyop'`       |
-| verify_multi_hyop | 165 B | `import { verify_multi_hyop } from 'hyop'` |
+| verify_hyop       | 150 B | `import { verify_hyop } from 'hyop'`       |
+| verify_multi_hyop | 170 B | `import { verify_multi_hyop } from 'hyop'` |
 
 ## Install using NPM
 

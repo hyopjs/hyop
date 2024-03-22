@@ -11,7 +11,7 @@ export function verify_hyop(doc, op_R_fn) {
 	}
 	for (let el of doc.querySelectorAll('[hyop]')) {
 		doc = el.getAttribute('hyop')
-		if (!op_R_fn[doc]) throw Error('missing hyop: ' + doc)
+		if (!op_R_fn[doc]) throw Error('missing hyop', { hyop: doc })
 		op_R_fn[doc](el)
 		op_S.delete(doc)
 	}
