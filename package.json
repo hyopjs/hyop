@@ -1,6 +1,6 @@
 {
 	"name": "hyop",
-	"version": "0.3.5",
+	"version": "0.3.6",
 	"description": "Hypermedia Operation. Tiny library (starting at 61 B) to hydrate operations as the hyop attribute. Use standalone or with other Hypermedia libraries like HTMX...Hydration as Hypermedia",
 	"keywords": [
 		"hypermedia",
@@ -125,42 +125,42 @@
 			"import": {
 				".": "{ verify_hyop }"
 			},
-			"limit": "150 B"
+			"limit": "148 B"
 		},
 		{
 			"name": "verifySingleHyop .",
 			"import": {
 				".": "{ verifySingleHyop }"
 			},
-			"limit": "150 B"
+			"limit": "148 B"
 		},
 		{
 			"name": "verify_hyop ./verify_hyop",
 			"import": {
 				"./verify_hyop": "{ verify_hyop }"
 			},
-			"limit": "150 B"
+			"limit": "148 B"
 		},
 		{
 			"name": "verify_multi_hyop .",
 			"import": {
 				".": "{ verify_multi_hyop }"
 			},
-			"limit": "170 B"
+			"limit": "165 B"
 		},
 		{
 			"name": "verifyMultiHyop .",
 			"import": {
 				".": "{ verifyMultiHyop }"
 			},
-			"limit": "170 B"
+			"limit": "165 B"
 		},
 		{
 			"name": "verify_multi_hyop ./verify_multi_hyop",
 			"import": {
 				"./verify_multi_hyop": "{ verify_multi_hyop }"
 			},
-			"limit": "170 B"
+			"limit": "165 B"
 		}
 	]
 }
