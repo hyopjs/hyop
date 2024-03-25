@@ -132,7 +132,7 @@ Hyop gives the programmer full access to Javascript & the Web APIs. And binds SS
 
 ## How does hyop fit into a reactive stack?
 
-Hyop is useful with reactive libraries. Including [rmemo (reactive memo)](https://github.com/ctx-core/rmemo) & [relementjs (html builder)](https://github.com/relementjs/relementjs). rmemo by itself adds ~372 B to ~589 B<sup><a href="#note-on-app-payload-size-vs-standalone-library-payload-size">[1]</a></sup> to payload. hyop + relementjs + rmemo adds ~818 B<sup><a href="#note-on-app-payload-size-vs-standalone-library-payload-size">[1]</a></sup> to the payload.
+Hyop is useful with reactive libraries. Including [rmemo (reactive memo)](https://github.com/ctx-core/rmemo) & [relementjs (html builder)](https://github.com/relementjs/relementjs). rmemo by itself adds ~376 B to ~591 B<sup><a href="#note-on-app-payload-size-vs-standalone-library-payload-size">[1]</a></sup> to payload. hyop + relementjs + rmemo adds ~821 B<sup><a href="#note-on-app-payload-size-vs-standalone-library-payload-size">[1]</a></sup> to the payload.
 
 ## What about Locality of Behavior?
 
