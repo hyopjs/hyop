@@ -1,5 +1,11 @@
 # hyop
 
+## 0.3.7
+
+### Patch Changes
+
+- README: update rmemo & ctx-core/be sizes
+
 ## 0.3.6
 
 ### Patch Changes
