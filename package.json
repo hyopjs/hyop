@@ -67,7 +67,7 @@
 		"c8": "^9.1.0",
 		"check-dts": "^0.8.0",
 		"esbuild": "^0.21.4",
-		"jsdom": "^24.0.0",
+		"jsdom": "^24.1.0",
 		"size-limit": "^11.1.4",
 		"tsx": "^4.11.0",
 		"typescript": "next",
