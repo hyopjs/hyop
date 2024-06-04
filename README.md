@@ -221,7 +221,7 @@ https://brookebrodack.net/content
 This page shows videos from Brooke Brodack's YouTube channel. The embebbed YouTube video player with the play/pause video state being in sync with the feed link.
 
 - [server render logic](https://github.com/btakita/ui--server--brookebrodack/blob/main/content/content__doc_html.ts)
-- [browser logic](https://github.com/btakita/ui--browser--brookebrodack/blob/main/content/content__hyop.ts)
+- [browser logic](https://github.com/btakita/ui--browser--brookebrodack/blob/main/content/hyop/content__hyop.ts)
 
 ### Timeline with Animations, YouTube Video Player + Internet Archive Video Player
 
@@ -230,7 +230,7 @@ https://brookebrodack.net/brookers
 This page is a partial timeline of the deleted Brookers YouTube channel. It integrates some web animations, YouTube player, & the Internet Archive video player.
 
 - [server render logic](https://github.com/btakita/ui--server--brookebrodack/blob/main/brookers/brookers__doc_html.ts)
-- [browser logic](https://github.com/btakita/ui--browser--brookebrodack/blob/main/brookers/brookers__hyop.ts)
+- [browser logic](https://github.com/btakita/ui--browser--brookebrodack/blob/main/brookers/hyop/brookers__hyop.ts)
 
 ## Name Convention
 
