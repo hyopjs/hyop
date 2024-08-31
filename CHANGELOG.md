@@ -1,5 +1,12 @@
 # hyop
 
+## 0.3.15
+
+### Patch Changes
+
+- esbuild: ^0.23.0 -> ^0.23.1
+- jsdom: ^24.1.1 -> ^25.0.0
+
 ## 0.3.14
 
 ### Patch Changes
