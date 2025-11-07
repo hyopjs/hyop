@@ -59,17 +59,16 @@
 		"test:unit": "tsx node_modules/uvu/bin.js . '\\.test\\.(ts|js)$'",
 		"disable:test:unit:coverage": "c8 pnpm test:unit"
 	},
-	"dependencies": {},
 	"devDependencies": {
 		"@ctx-core/preprocess": "^0.1.3",
-		"@size-limit/preset-small-lib": "^11.1.4",
+		"@size-limit/preset-small-lib": "^11.2.0",
 		"@types/jsdom": "^21.1.7",
-		"c8": "^10.1.2",
+		"c8": "^10.1.3",
 		"check-dts": "^0.8.2",
 		"esbuild": "^0.23.1",
-		"jsdom": "^25.0.0",
-		"size-limit": "^11.1.4",
-		"tsx": "^4.19.0",
+		"jsdom": "^25.0.1",
+		"size-limit": "^11.2.0",
+		"tsx": "^4.20.6",
 		"typescript": "next",
 		"uvu": "^0.5.6"
 	},
