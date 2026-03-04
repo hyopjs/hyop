@@ -1,5 +1,18 @@
 # hyop
 
+## 0.3.16
+
+### Patch Changes
+
+- c8: ^10.1.3 -> ^11.0.0
+- size-limit: ^11.2.0 -> ^12.0.0
+- esbuild: ^0.23.1 -> ^0.27.3
+- @types/jsdom: ^21.1.7 -> ^28.0.0
+- check-dts: ^0.8.2 -> ^0.9.0
+- tsx: ^4.20.6 -> ^4.21.0
+- jsdom: ^25.0.1 -> ^28.1.0
+- @size-limit/preset-small-lib: ^11.2.0 -> ^12.0.0
+
 ## 0.3.15
 
 ### Patch Changes
@@ -125,7 +138,6 @@
 - documentation: hypermedia instead of hypertext
 
   README:
-
   - How does hyop fit into a reactive stack?
   - How does hyop compare with other Hypermedia libraries such as HTMX?
   - Note on App Payload Size vs Standalone Library Payload Size
