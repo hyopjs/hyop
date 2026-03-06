@@ -1,5 +1,11 @@
 # hyop
 
+## 0.3.17
+
+### Patch Changes
+
+- chore: migrate scripts from pnpm to bun
+
 ## 0.3.16
 
 ### Patch Changes

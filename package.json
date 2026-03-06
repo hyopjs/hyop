@@ -1,6 +1,6 @@
 {
 	"name": "hyop",
-	"version": "0.3.16",
+	"version": "0.3.17",
 	"description": "Hypermedia Operation. Tiny library (starting at 61 B) to hydrate operations as the hyop attribute. Use standalone or with other Hypermedia libraries like HTMX...Hydration as Hypermedia",
 	"keywords": [
 		"hypermedia",
@@ -59,7 +59,7 @@
 		"disable:test:unit:coverage": "c8 bun run test:unit"
 	},
 	"devDependencies": {
-		"@ctx-core/preprocess": "^0.2.3",
+		"@ctx-core/preprocess": "^0.2.4",
 		"@size-limit/preset-small-lib": "^12.0.0",
 		"@types/jsdom": "^28.0.0",
 		"c8": "^11.0.0",
