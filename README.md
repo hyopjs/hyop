@@ -39,7 +39,7 @@ npm i hyop
 import { hyop } from 'hyop'
 window.addEventListener('load', ()=>{
   hyop(document, {
-    input__hyop: input=>{
+input__hyop: input=>{
       const content = document.querySelector('#content')
       input.addEventListener(
         'input',
